@@ -7,7 +7,7 @@ pygame.init()
 # Taille de la fenêtre
 largeur, hauteur = 800, 600
 fenetre = pygame.display.set_mode((largeur, hauteur))
-pygame.display.set_caption("Dessiner une ligne")
+
 
 # Couleurs
 blanc = (255, 255, 255)
@@ -29,7 +29,7 @@ A = [
   (0,20),
   (20,20),
 ]
-vie = False
+
 
 
 def grille():
