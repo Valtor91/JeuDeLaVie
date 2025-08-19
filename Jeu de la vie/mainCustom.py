@@ -8,6 +8,7 @@ customtkinter.set_default_color_theme("blue")  # "blue", "green", "dark-blue"
 largeur, hauteur = 900, 600
 app = customtkinter.CTk()
 app.geometry(f"{largeur}x{hauteur}")
+app.title("Jeu de la Vie — Cellules en action")
 
 blanc = (255, 255, 255)
 noir = (0, 0, 0)
@@ -35,7 +36,7 @@ frame_gauche.pack(side="bottom", pady=20)
 
 
 canvas = customtkinter.CTkCanvas(app, width=700, height=hauteur, bg="white", highlightthickness=0)
-canvas.pack(pady=0, padx=(0, 0))  # Décale vers la droite avec 50 pixels de marge à gauche
+canvas.pack(pady=0, padx=(0, 0))
 
 
 
@@ -47,8 +48,8 @@ def grille():
             canvas.create_line(y, 0, y,largeur , fill="black", width=1)
 
 def clic(event):
-    x = event.x  # Position X relative au widget
-    y = event.y  # Position Y relative au widget
+    x = event.x
+    y = event.y
     print(f"Clic détecté à ({x}, {y})")
 
 
@@ -95,6 +96,8 @@ def InLife():
 bouton = customtkinter.CTkButton(frame_gauche, text="       ▶️", command=InLife)
 
 bouton.pack(side="bottom", pady=20)
+label = customtkinter.CTkLabel(frame_gauche, text=f"cellule: {len(celluleAffiche)}", font=("Arial", 18))
+label.pack(pady=0)
 grille()
 
 def boucle():
@@ -103,6 +106,8 @@ def boucle():
 
     for (x, y) in celluleAffiche:
         canvas.create_rectangle(x, y, x+intervale, y+intervale, fill="red", outline="black", width=2,tags="cellule")
+
+    label.configure(text=f"cellule: {len(celluleAffiche)}")
 
 
     app.after(20, boucle)
